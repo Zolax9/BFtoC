@@ -1,3 +1,12 @@
+bin/debug/BFtoC-debug
 bin/debug/inp.bf
 bin/debug/out.c
-bin/debug/out
+bin/release/BFtoC-release
+bin/release/inp.bf
+bin/release/out.c
+obj/debug/*
+obj/release/*
+inp.bf
+out-debug
+out-release
+README.md.backup

@@ -1,12 +1,9 @@
-DBGEXE:=BrainfuckC-debug
-RELEXE:=BrainfuckC-release
+DBGEXE:=BFtoC-debug
+RELEXE:=BFtoC-release
 DBGOBJDIR:=obj/debug
 RELOBJDIR:=obj/release
-CONFIG:=debug
 
-LDFLAGS:=
-
-CFLAGS:= -g -pedantic -Wall -Wextra -Wno-missing-field-initializers
+CFLAGS:= -pedantic -Wall -Wextra
 CFLAGS+= -std=c99 -I ./include
 
 SRC:=$(wildcard src/*.c)
@@ -20,17 +17,14 @@ CC=gcc
 
 all: debug release
 
-debug:CONFIG:=debug
-debug:CFLAGS+= -g -DDEBUG
-
-release:CONFIG:=release
+debug:CFLAGS+= -g
 release: CFLAGS+= -O3
 
 debug: $(DBGOBJ)
-	$(CC) $(DBGOBJ) -o bin/debug/$(DBGEXE) $(LDFLAGS)
+	$(CC) $(DBGOBJ) -o bin/debug/$(DBGEXE)
 
 release: $(RELOBJ)
-	$(CC) $(RELOBJ) -o bin/release/$(RELEXE) $(LDFLAGS)
+	$(CC) $(RELOBJ) -o bin/release/$(RELEXE)
 
 $(DBGOBJDIR)/%.o : src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
